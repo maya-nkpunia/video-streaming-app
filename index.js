@@ -20,21 +20,21 @@ const storage = multer.diskStorage({
 // multer configuration
 const upload = multer({storage: storage});
 
-// app.use(
-//     cors({
-//         origin: ["http://localhost:8000", "http://localhost:5173"],
-//         credentials: true
-//     })
-// );
+app.use(
+    cors({
+        origin: ["http://localhost:8000", "http://localhost:5173"],
+        credentials: true
+    })
+);
 
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*"); //watch it
-    res.header(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    next()
-});
+// app.use((req, res, next) => {
+//     res.header("Access-Control-Allow-Origin", "*"); //watch it
+//     res.header(
+//         "Access-Control-Allow-Headers",
+//         "Origin, X-Requested-With, Content-Type, Accept"
+//     );
+//     next()
+// });
 
 app.use(express.json()); 
 app.use(express.urlencoded({extended:true}));
@@ -46,6 +46,11 @@ app.get('/', function(req, res) {
 
 app.post("/upload", upload.single('file'), function(req, res){
     console.log("file uploaded");
+    // const lessonId = uuidv4();
+    // const videoPath = req.file.path;
+    // const outputPath = `./uploads/courses/${lessonId}`;
+    // const hlsPath = `${outputPath}/index.m3u8`;
+    // console.log("hlsPath", hlsPath);
 });
 
 app.listen(8000, function(){
