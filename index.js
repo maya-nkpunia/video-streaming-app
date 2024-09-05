@@ -45,12 +45,11 @@ app.get('/', function(req, res) {
 });
 
 app.post("/upload", upload.single('file'), function(req, res){
-    console.log("file uploaded");
-    // const lessonId = uuidv4();
-    // const videoPath = req.file.path;
-    // const outputPath = `./uploads/courses/${lessonId}`;
-    // const hlsPath = `${outputPath}/index.m3u8`;
-    // console.log("hlsPath", hlsPath);
+    const lessonId = uuidv4();
+    const videoPath = req.file.path;
+    const outputPath = `./uploads/courses/${lessonId}`;
+    const hlsPath = `${outputPath}/index.m3u8`;
+    console.log("hlsPath", hlsPath);
 });
 
 app.listen(8000, function(){
